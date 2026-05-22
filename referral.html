@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cabin Crew Planner Referral</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f5f7;
+            text-align: center;
+            padding: 50px 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #0A2540;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            color: #ffffff;
+        }
+        h1 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        p {
+            font-size: 16px;
+            color: #d1d5db;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+        .highlight {
+            color: #D4AF37;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            background-color: #D4AF37; 
+            color: #0A2540; 
+            text-decoration: none;
+            padding: 16px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s, opacity 0.2s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .btn:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+        .loading-text {
+            font-size: 12px;
+            color: #888;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cabin Crew Planner Pro</h1>
+        <p>A colleague invited you to try Premium! Claim your exclusive <span class="highlight">14-day free trial</span> and an <span class="highlight">additional 10% discount</span> on the annual plan.</p>
+        
+        <a id="downloadBtn" href="#" class="btn">Claim VIP Offer in App</a>
+    </div>
+    
+    <p class="loading-text">If the app doesn't open automatically, click the button above.</p>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const referrerId = urlParams.get('referrerId');
+
+        let playStoreUrl = "https://play.google.com/store/apps/details?id=com.pilotjancek.cabincrewplanner";
+        if (referrerId) {
+            playStoreUrl += "&referrer=" + encodeURIComponent(referrerId);
+        }
+
+        document.getElementById("downloadBtn").href = playStoreUrl;
+
+        window.onload = function() {
+            setTimeout(function() {
+                const intentUrl = "intent://supportcabincrewplanner-sys.github.io/referral.html?referrerId=" 
+                    + encodeURIComponent(referrerId || "") 
+                    + "#Intent;scheme=https;package=com.pilotjancek.cabincrewplanner;S.browser_fallback_url=" 
+                    + encodeURIComponent(playStoreUrl) + ";end";
+                
+                window.location.href = intentUrl;
+            }, 600);
+        };
+    </script>
+</body>
+</html>
